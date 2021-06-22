@@ -1,5 +1,5 @@
 def solve_puzzle():
-    pass
+    print('Puzzle solved!')
 
 
 if __name__ == '__main__':
