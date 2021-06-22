@@ -35,7 +35,6 @@ def assign_void_value_to_puzzle_board(puzzle_board):
         user_choice = input(f'Deseja mesmo usar o quadrado {void_square_value}? (s/n)')
 
         if user_choice == 's':
-            searching_for_void_square = False
             row, column = find_index_for_value(puzzle_board, void_square_value)
             puzzle_board[row][column] = None
             return puzzle_board
