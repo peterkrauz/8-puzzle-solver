@@ -12,7 +12,7 @@ def solve_puzzle():
 
     solution_type = get_solution_type()
     puzzle_solver_function = get_puzzle_solver(solution_type)
-    puzzle_solver_function()
+    puzzle_solver_function(puzzle_board)
 
 
 def build_puzzle_board():
