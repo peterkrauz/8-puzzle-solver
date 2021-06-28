@@ -1,5 +1,6 @@
 from random import shuffle
 
+from movement import find_index_for_value
 from presenter import get_user_void_square_choice, confirm_user_void_square_choice
 
 
@@ -27,14 +28,3 @@ def assign_void_value_to_puzzle_board(puzzle_board):
             row, column = find_index_for_value(puzzle_board, void_square_value)
             puzzle_board[row][column] = None
             return puzzle_board
-
-
-def find_index_for_value(puzzle_board, value):
-    row_index = 0
-    for row in puzzle_board:
-        column_index = 0
-        for column in row:
-            if column == value:
-                return row_index, column_index
-            column_index += 1
-        row_index += 1

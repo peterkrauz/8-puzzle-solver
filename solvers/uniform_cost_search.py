@@ -1,2 +1,44 @@
-def solve_puzzle(puzzle_board):
-    print('Uniform Cost')
+from movement import get_next_moves_for_board, add_moves_to_frontier_boards, board_is_solution
+from solvers.node import Node
+from solvers.search_info import SearchInfo, get_path_for_node
+
+
+def solve_puzzle(puzzle_board: list[list]):
+    frontier_puzzle_boards = set()
+    nodes_to_visit: list[Node] = [Node(puzzle_board, parent_node=None)]
+
+    visited_nodes = []
+    expanded_nodes = 0
+    largest_frontier_size = 0
+
+    while True:
+        current_node = nodes_to_visit.pop(0)
+
+        if board_is_solution(current_node.puzzle_board):
+            return build_search_info(visited_nodes, expanded_nodes, largest_frontier_size, current_node)
+
+        child_nodes_boards = get_next_moves_for_board(current_node.puzzle_board, frontier_puzzle_boards)
+        frontier_puzzle_boards = add_moves_to_frontier_boards(child_nodes_boards, frontier_puzzle_boards)
+
+        for child_board in child_nodes_boards:
+            nodes_to_visit.append(Node(child_board, current_node))
+
+        visited_nodes.append(current_node)
+        expanded_nodes += len(child_nodes_boards)
+        current_frontier_size = len(nodes_to_visit)
+        if current_frontier_size > largest_frontier_size:
+            largest_frontier_size = current_frontier_size
+
+
+def build_search_info(
+        visited_nodes: list[Node],
+        expanded_nodes: int,
+        largest_frontier_size: int,
+        solution_node: Node
+) -> SearchInfo:
+    return SearchInfo(
+        visited_nodes=len(visited_nodes),
+        expanded_nodes=expanded_nodes,
+        largest_frontier_size=largest_frontier_size,
+        path=get_path_for_node(solution_node)
+    )

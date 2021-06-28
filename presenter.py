@@ -48,6 +48,15 @@ def get_user_void_square_choice():
 
 def confirm_user_void_square_choice(void_square_value):
     return input(
-        f'Deseja mesmo usar o quadrado cujo valor é'
+        f'Deseja mesmo usar a casa cujo valor é'
         f' {CliFormatter.CYAN}{void_square_value}{CliFormatter.END}? (s/n)\n'
+    )
+
+
+def warn_uniform_cost_slowness():
+    print(
+        '\n'
+        f'{CliFormatter.RED}Aviso{CliFormatter.END}: Caso a matriz seja maior que 3x3, '
+        f'a solução de busca por Custo Uniforme pode demorar em sua execução.'
+        f'\n'
     )

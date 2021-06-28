@@ -1,10 +1,14 @@
 from board import get_input_matrix, get_puzzle_board, assign_void_value_to_puzzle_board
-from presenter import get_matrix_size, get_solution_type, exhibit_puzzle_board
+from presenter import get_matrix_size, get_solution_type, exhibit_puzzle_board, warn_uniform_cost_slowness
 from solution_type import SolutionType
 
 
 def solve_puzzle():
-    puzzle_board = build_puzzle_board()
+    matrix_size = get_matrix_size()
+    if matrix_size > 3:
+        warn_uniform_cost_slowness()
+
+    puzzle_board = build_puzzle_board(matrix_size)
     exhibit_puzzle_board(puzzle_board)
 
     puzzle_board = prepare_puzzle_board(puzzle_board)
@@ -12,11 +16,10 @@ def solve_puzzle():
 
     solution_type = get_solution_type()
     puzzle_solver_function = get_puzzle_solver(solution_type)
-    puzzle_solver_function(puzzle_board)
+    result = puzzle_solver_function(puzzle_board)
 
 
-def build_puzzle_board():
-    matrix_size = get_matrix_size()
+def build_puzzle_board(matrix_size):
     puzzle_input = get_input_matrix(matrix_size)
     return get_puzzle_board(puzzle_input, matrix_size)
 
