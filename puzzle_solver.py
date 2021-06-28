@@ -1,5 +1,8 @@
+import time
+
 from board import get_input_matrix, get_puzzle_board, assign_void_value_to_puzzle_board
-from presenter import get_matrix_size, get_solution_type, exhibit_puzzle_board, warn_uniform_cost_slowness
+from presenter import get_matrix_size, get_solution_type, exhibit_puzzle_board, warn_uniform_cost_slowness, \
+    exhibit_search_info, prompt_for_path_exhibition, exhibit_search_path, prompt_for_hard_shuffle, display_program_start
 from solution_type import SolutionType
 
 
@@ -8,20 +11,30 @@ def solve_puzzle():
     if matrix_size > 3:
         warn_uniform_cost_slowness()
 
-    puzzle_board = build_puzzle_board(matrix_size)
+    hard_shuffle = prompt_for_hard_shuffle() == 'd'
+
+    puzzle_board = build_puzzle_board(matrix_size, hard_shuffle)
     exhibit_puzzle_board(puzzle_board)
 
-    puzzle_board = prepare_puzzle_board(puzzle_board)
+    puzzle_board, void_value = prepare_puzzle_board(puzzle_board)
     exhibit_puzzle_board(puzzle_board)
 
     solution_type = get_solution_type()
     puzzle_solver_function = get_puzzle_solver(solution_type)
-    result = puzzle_solver_function(puzzle_board)
+
+    execution_start = time.process_time()
+    display_program_start()
+    search_info = puzzle_solver_function(puzzle_board, void_value)
+    exhibit_search_info(search_info, time.process_time() - execution_start)
+
+    path_exhibition_user_choice = prompt_for_path_exhibition()
+    if path_exhibition_user_choice == 's':
+        exhibit_search_path(search_info.path)
 
 
-def build_puzzle_board(matrix_size):
-    puzzle_input = get_input_matrix(matrix_size)
-    return get_puzzle_board(puzzle_input, matrix_size)
+def build_puzzle_board(matrix_size, hard_shuffle):
+    puzzle_input = get_input_matrix(matrix_size, hard_shuffle)
+    return get_puzzle_board(puzzle_input, matrix_size, hard_shuffle)
 
 
 def prepare_puzzle_board(puzzle_board):

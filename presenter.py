@@ -1,4 +1,8 @@
+import time
+
 from solution_type import SolutionType
+from solvers.node import Node
+from solvers.search_info import SearchInfo
 
 
 class CliFormatter:
@@ -60,3 +64,36 @@ def warn_uniform_cost_slowness():
         f'a solução de busca por Custo Uniforme pode demorar em sua execução.'
         f'\n'
     )
+
+
+def prompt_for_path_exhibition():
+    return input(
+        f'{CliFormatter.GREEN}Deseja visualizar o caminho trilhado? (s/n){CliFormatter.END}\n'
+    )
+
+
+def prompt_for_hard_shuffle():
+    return input(
+        f'Deseja embaralhar no nível {CliFormatter.YELLOW}Fácil{CliFormatter.END} '
+        f'ou {CliFormatter.RED}Difícil?{CliFormatter.END} '
+        f'({CliFormatter.YELLOW}f{CliFormatter.END}/{CliFormatter.RED}d{CliFormatter.END})\n'
+    )
+
+
+def exhibit_search_info(search_info: SearchInfo, time_taken):
+    print(f'{CliFormatter.CYAN}Solução encontrada em {time_taken} segundos!{CliFormatter.END}')
+    print(f'Nodos expandidos: {CliFormatter.YELLOW}{search_info.expanded_nodes}{CliFormatter.END}')
+    print(f'Nodos visitados: {CliFormatter.YELLOW}{search_info.visited_nodes}{CliFormatter.END}')
+    print(f'Maior tamanho da fronteira: {CliFormatter.YELLOW}{search_info.largest_frontier_size}{CliFormatter.END}')
+    print(f'Tamanho do caminho trilhado: {CliFormatter.YELLOW}{len(search_info.path)}{CliFormatter.END}')
+
+
+def display_program_start():
+    print(f'{CliFormatter.GREEN}Busca iniciada!{CliFormatter.END}')
+
+
+def exhibit_search_path(search_path: list[Node]):
+    for node in search_path:
+        exhibit_puzzle_board(node.puzzle_board)
+        print('\n')
+        time.sleep(0.25)
