@@ -138,7 +138,6 @@ def add_moves_to_frontier_boards(new_boards: list[list], frontier_puzzle_boards:
 
 
 def board_is_solution(puzzle_board: list[list], void_value) -> bool:
-    value = 1
     stumbled_on_void_value = False
 
     if puzzle_board[0][0] not in [1, 2]:

@@ -20,7 +20,7 @@ class CliFormatter:
 
 
 def get_matrix_size():
-    matrix_size = int(input('Qual o tamanho do lado da matriz desejada?'))
+    matrix_size = int(input('Qual o tamanho desejado para o lado do tabuleiro?'))
     return matrix_size
 
 
@@ -36,10 +36,12 @@ def get_solution_type():
 
 def exhibit_puzzle_board(puzzle_board):
     for row in puzzle_board:
+        row_string = ''
         for item in row:
             value_to_print = f'{CliFormatter.CYAN}{item}' if item else f'{CliFormatter.YELLOW}_'
-            print(f'{value_to_print}\t', end='')
-        print()
+            row_string += f'{value_to_print}\t'
+        row_string += '\n'
+        print(row_string, end='')
     print(CliFormatter.END)
 
 
@@ -81,7 +83,7 @@ def prompt_for_hard_shuffle():
 
 
 def exhibit_search_info(search_info: SearchInfo, time_taken):
-    print(f'{CliFormatter.CYAN}Solução encontrada em {time_taken} segundos!{CliFormatter.END}')
+    print(f'\n{CliFormatter.CYAN}Solução encontrada em {time_taken} segundos!{CliFormatter.END}')
     print(f'Nodos expandidos: {CliFormatter.YELLOW}{search_info.expanded_nodes}{CliFormatter.END}')
     print(f'Nodos visitados: {CliFormatter.YELLOW}{search_info.visited_nodes}{CliFormatter.END}')
     print(f'Maior tamanho da fronteira: {CliFormatter.YELLOW}{search_info.largest_frontier_size}{CliFormatter.END}')
@@ -97,3 +99,13 @@ def exhibit_search_path(search_path: list[Node]):
         exhibit_puzzle_board(node.puzzle_board)
         print('\n')
         time.sleep(0.25)
+
+
+def prompt_user_for_tile_value():
+    return int(
+        input('Qual o valor da próxima casa do tabuleiro?')
+    )
+
+
+def warn_user_of_repeated_value(value_limit):
+    print(f'Você já inseriu este valor! Use outro número não repetido entre 1 e {value_limit}')
