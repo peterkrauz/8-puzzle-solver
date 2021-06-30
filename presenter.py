@@ -94,7 +94,7 @@ def display_program_start():
     print(f'{CliFormatter.GREEN}Busca iniciada!{CliFormatter.END}')
 
 
-def exhibit_search_path(search_path: list[Node]):
+def exhibit_search_path(search_path):
     for node in search_path:
         exhibit_puzzle_board(node.puzzle_board)
         print('\n')
