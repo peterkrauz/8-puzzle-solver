@@ -11,7 +11,7 @@ class TileDirection:
     WEST = 4
 
 
-def get_next_moves_for_board(puzzle_board, frontier_puzzle_boards) -> list:
+def get_next_moves_for_board(puzzle_board, frontier_puzzle_boards):
     matrix_size = len(puzzle_board) - 1
     y, x = find_index_for_value(puzzle_board, value=None)
 
@@ -46,7 +46,7 @@ def get_next_moves_for_board(puzzle_board, frontier_puzzle_boards) -> list:
     return next_moves
 
 
-def get_child_nodes_for_node(node: Node, visited_nodes: list[Node]) -> list[Node]:
+def get_child_nodes_for_node(node, visited_nodes):
     matrix_size = len(node.puzzle_board) - 1
     void_square_coordinates = find_index_for_value(node.puzzle_board, value=None)
     void_square_y, void_square_x = void_square_coordinates
@@ -83,16 +83,16 @@ def get_child_nodes_for_node(node: Node, visited_nodes: list[Node]) -> list[Node
     return next_moves
 
 
-def board_can_be_visited(board: list[list], frontier_puzzle_boards) -> bool:
+def board_can_be_visited(board, frontier_puzzle_boards):
     tuple_board = create_tuple_from_board(board)
     return tuple_board not in frontier_puzzle_boards
 
 
-def create_tuple_from_board(board: list[list]) -> tuple:
+def create_tuple_from_board(board):
     return tuple(list(chain.from_iterable(board)))
 
 
-def build_board_for_move_direction(puzzle_board: list[list], tile_direction: int) -> list[list]:
+def build_board_for_move_direction(puzzle_board, tile_direction):
     new_board = deepcopy(puzzle_board)
     void_square_y, void_square_x = find_index_for_value(new_board, value=None)
 
@@ -127,8 +127,10 @@ def find_index_for_value(puzzle_board, value):
             column_index += 1
         row_index += 1
 
+    raise ValueError(f"Value {value} could not be found on board {puzzle_board}")
 
-def add_moves_to_frontier_boards(new_boards: list[list], frontier_puzzle_boards) -> set:
+
+def add_moves_to_frontier_boards(new_boards, frontier_puzzle_boards):
     new_frontier_puzzle_boards = deepcopy(frontier_puzzle_boards)
     for board in new_boards:
         board_tuple = create_tuple_from_board(board)
@@ -137,7 +139,7 @@ def add_moves_to_frontier_boards(new_boards: list[list], frontier_puzzle_boards)
     return new_frontier_puzzle_boards
 
 
-def board_is_solution(puzzle_board: list[list], void_value) -> bool:
+def board_is_solution(puzzle_board, void_value):
     stumbled_on_void_value = False
 
     if puzzle_board[0][0] not in [1, 2]:

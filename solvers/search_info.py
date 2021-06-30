@@ -8,7 +8,7 @@ class SearchInfo:
             visited_nodes: int,
             expanded_nodes: int,
             largest_frontier_size: int,
-            path: list[Node]
+            path: list
     ):
         self.visited_nodes = visited_nodes
         self.expanded_nodes = expanded_nodes
@@ -17,10 +17,10 @@ class SearchInfo:
 
 
 def build_search_info(
-        visited_nodes: list[Node],
+        visited_nodes: list,
         expanded_nodes: int,
         largest_frontier_size: int,
-        solution_node: Node
+        solution_node
 ) -> SearchInfo:
     return SearchInfo(
         visited_nodes=len(visited_nodes),
@@ -30,7 +30,7 @@ def build_search_info(
     )
 
 
-def get_path_for_node(node: Node) -> list[Node]:
+def get_path_for_node(node) -> list:
     path = []
     node_to_search = node
 

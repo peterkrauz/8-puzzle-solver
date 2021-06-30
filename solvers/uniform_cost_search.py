@@ -3,9 +3,9 @@ from solvers.node import Node
 from solvers.search_info import SearchInfo, build_search_info
 
 
-def solve_puzzle(puzzle_board: list[list], void_value) -> SearchInfo:
+def solve_puzzle(puzzle_board, void_value):
     frontier_puzzle_boards = set()
-    nodes_to_visit: list[Node] = [Node(puzzle_board, parent_node=None)]
+    nodes_to_visit = [Node(puzzle_board, parent_node=None)]
 
     visited_nodes = []
     expanded_nodes = 0

@@ -4,7 +4,7 @@ from solvers.node import Node
 from solvers.search_info import SearchInfo, build_search_info
 
 
-def solve_puzzle(puzzle_board, void_value) -> SearchInfo:
+def solve_puzzle(puzzle_board, void_value):
     nodes_to_visit = [Node(puzzle_board, parent_node=None)]
 
     visited_nodes = []

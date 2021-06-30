@@ -2,7 +2,7 @@ from movement import find_index_for_value
 from solvers.node import Node
 
 
-def compute_simple_heuristic_value_for_node(node: Node, void_square_value: int) -> int:
+def compute_simple_heuristic_value_for_node(node, void_square_value):
     """
     Computes the number of misplaced tiles of a given puzzle board.
     Smaller values indicate better optimal paths.
@@ -19,7 +19,7 @@ def compute_simple_heuristic_value_for_node(node: Node, void_square_value: int) 
     return heuristic_value
 
 
-def compute_node_index(heuristic_value: int, nodes_to_visit, void_square_value: int, default_index: int) -> int:
+def compute_node_index(heuristic_value, nodes_to_visit, void_square_value, default_index):
     for index, node in enumerate(nodes_to_visit):
         if heuristic_value < compute_simple_heuristic_value_for_node(node, void_square_value):
             if index == 0:
@@ -30,7 +30,7 @@ def compute_node_index(heuristic_value: int, nodes_to_visit, void_square_value: 
     return default_index
 
 
-def compute_precise_heuristic_value_for_node(node: Node, void_square_value: int) -> int:
+def compute_precise_heuristic_value_for_node(node, void_square_value):
     """
     Computes the sum of all manhattan distances between each tile
     and their desired position.
