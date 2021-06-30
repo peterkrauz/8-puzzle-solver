@@ -11,7 +11,7 @@ class TileDirection:
     WEST = 4
 
 
-def get_next_moves_for_board(puzzle_board: list[list], frontier_puzzle_boards) -> list:
+def get_next_moves_for_board(puzzle_board, frontier_puzzle_boards) -> list:
     matrix_size = len(puzzle_board) - 1
     y, x = find_index_for_value(puzzle_board, value=None)
 
@@ -117,7 +117,7 @@ def build_board_for_move_direction(puzzle_board: list[list], tile_direction: int
     return new_board
 
 
-def find_index_for_value(puzzle_board: list[list], value) -> tuple:
+def find_index_for_value(puzzle_board, value):
     row_index = 0
     for row in puzzle_board:
         column_index = 0
