@@ -11,7 +11,7 @@ class TileDirection:
     WEST = 4
 
 
-def get_next_moves_for_board(puzzle_board: list[list], frontier_puzzle_boards: set[tuple]) -> list:
+def get_next_moves_for_board(puzzle_board: list[list], frontier_puzzle_boards) -> list:
     matrix_size = len(puzzle_board) - 1
     y, x = find_index_for_value(puzzle_board, value=None)
 
@@ -83,7 +83,7 @@ def get_child_nodes_for_node(node: Node, visited_nodes: list[Node]) -> list[Node
     return next_moves
 
 
-def board_can_be_visited(board: list[list], frontier_puzzle_boards: set[tuple]) -> bool:
+def board_can_be_visited(board: list[list], frontier_puzzle_boards) -> bool:
     tuple_board = create_tuple_from_board(board)
     return tuple_board not in frontier_puzzle_boards
 
@@ -128,7 +128,7 @@ def find_index_for_value(puzzle_board: list[list], value) -> tuple:
         row_index += 1
 
 
-def add_moves_to_frontier_boards(new_boards: list[list], frontier_puzzle_boards: set[tuple]) -> set[tuple]:
+def add_moves_to_frontier_boards(new_boards: list[list], frontier_puzzle_boards) -> set:
     new_frontier_puzzle_boards = deepcopy(frontier_puzzle_boards)
     for board in new_boards:
         board_tuple = create_tuple_from_board(board)

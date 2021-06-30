@@ -1,4 +1,4 @@
-from movement import board_is_solution, get_next_moves_for_board, get_child_nodes_for_node
+from movement import board_is_solution, get_child_nodes_for_node
 from solvers.heuristics import compute_simple_heuristic_value_for_node, compute_node_index
 from solvers.node import Node
 from solvers.search_info import SearchInfo, build_search_info
