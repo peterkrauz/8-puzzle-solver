@@ -1,6 +1,6 @@
 from movement import get_next_moves_for_board, add_moves_to_frontier_boards, board_is_solution
 from solvers.node import Node
-from solvers.search_info import SearchInfo, build_search_info
+from solvers.search_info import build_search_info
 
 
 def solve_puzzle(puzzle_board, void_value):

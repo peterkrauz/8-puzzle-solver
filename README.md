@@ -7,8 +7,11 @@ All files were developed for a college work in the subject of Intelligent System
 The solutions implemented are as follows:
 
 - [Uniform Cost Search](solvers/uniform_cost_search.py)
+  - Is basically a Breadth-first search given the fact that each Puzzle Board down the search tree has an increasing cost of 1.
 - [A* (Simple)](solvers/a_star_simple_search.py)
+  - Uses the number of misplaced tiles as heuristic.
 - [A* (Precise)](solvers/a_star_precise_search.py)
+  - Uses the sum of each tile's [Manhattan Distance](https://en.wikipedia.org/wiki/Taxicab_geometry) to its position in the endgame board. 
 
 ### N Puzzle
 

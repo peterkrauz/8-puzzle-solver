@@ -1,5 +1,4 @@
 from movement import find_index_for_value
-from solvers.node import Node
 
 
 def compute_simple_heuristic_value_for_node(node, void_square_value):
@@ -19,7 +18,7 @@ def compute_simple_heuristic_value_for_node(node, void_square_value):
     return heuristic_value
 
 
-def compute_node_index(heuristic_value, nodes_to_visit, void_square_value, default_index):
+def compute_simple_heuristic_node_index(heuristic_value, nodes_to_visit, void_square_value, default_index):
     for index, node in enumerate(nodes_to_visit):
         if heuristic_value < compute_simple_heuristic_value_for_node(node, void_square_value):
             if index == 0:
@@ -64,6 +63,17 @@ def compute_manhattan_distance_for_value(value, current_board, initial_value, vo
     absolute_y = abs(current_y - target_y)
     absolute_x = abs(current_x - target_x)
     return absolute_y + absolute_x
+
+
+def compute_precise_heuristic_node_index(heuristic_value, nodes_to_visit, void_square_value, default_index):
+    for index, node in enumerate(nodes_to_visit):
+        if heuristic_value < compute_precise_heuristic_value_for_node(node, void_square_value):
+            if index == 0:
+                return index
+            else:
+                return index - 1
+
+    return default_index
 
 
 def build_ideal_board(value, matrix_size, void_square_value):

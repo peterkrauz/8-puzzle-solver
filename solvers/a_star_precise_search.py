@@ -1,7 +1,7 @@
 from movement import board_is_solution, get_child_nodes_for_node
-from solvers.heuristics import compute_node_index, compute_precise_heuristic_value_for_node
+from solvers.heuristics import compute_precise_heuristic_value_for_node, compute_precise_heuristic_node_index
 from solvers.node import Node
-from solvers.search_info import SearchInfo, build_search_info
+from solvers.search_info import build_search_info
 
 
 def solve_puzzle(puzzle_board, void_value):
@@ -21,7 +21,12 @@ def solve_puzzle(puzzle_board, void_value):
 
         for child_node in child_nodes_from_current_node:
             heuristic_value = compute_precise_heuristic_value_for_node(child_node, void_value)
-            index = compute_node_index(heuristic_value, nodes_to_visit, void_value, len(nodes_to_visit) - 1)
+            index = compute_precise_heuristic_node_index(
+                heuristic_value,
+                nodes_to_visit,
+                void_value,
+                len(nodes_to_visit) - 1
+            )
             nodes_to_visit.insert(index, child_node)
 
         visited_nodes.append(current_node)
