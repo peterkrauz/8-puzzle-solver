@@ -11,7 +11,7 @@ The solutions implemented are as follows:
 - [A* (Simple)](solvers/a_star_simple_search.py)
   - Uses the number of misplaced tiles as heuristic.
 - [A* (Precise)](solvers/a_star_precise_search.py)
-  - Uses the sum of each tile's [Manhattan Distance](https://en.wikipedia.org/wiki/Taxicab_geometry) to its position in the endgame board. 
+  - Uses the sum of each tile's [Manhattan Distance](https://en.wikipedia.org/wiki/Taxicab_geometry) to its position in the endgame board as heuristic. 
 
 ### N Puzzle
 
