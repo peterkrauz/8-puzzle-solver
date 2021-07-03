@@ -74,6 +74,12 @@ def prompt_for_path_exhibition():
     )
 
 
+def prompt_for_puzzle_board_reuse():
+    return input(
+        f'{CliFormatter.GREEN}Deseja re-utilizar o tabuleiro para outra busca? (s/n){CliFormatter.END}\n'
+    )
+
+
 def prompt_for_hard_shuffle():
     return input(
         f'Deseja embaralhar no nível {CliFormatter.YELLOW}Fácil{CliFormatter.END} '
@@ -82,8 +88,8 @@ def prompt_for_hard_shuffle():
     )
 
 
-def exhibit_search_info(search_info: SearchInfo, time_taken):
-    print(f'\n{CliFormatter.CYAN}Solução encontrada em {time_taken} segundos!{CliFormatter.END}')
+def exhibit_search_info(search_info: SearchInfo, time_taken, solution_type):
+    print(f'\n{CliFormatter.CYAN}Solução encontrada em {time_taken} segundos utilizando {solution_type}{CliFormatter.END}')
     print(f'Nodos expandidos: {CliFormatter.YELLOW}{search_info.expanded_nodes}{CliFormatter.END}')
     print(f'Nodos visitados: {CliFormatter.YELLOW}{search_info.visited_nodes}{CliFormatter.END}')
     print(f'Maior tamanho da fronteira: {CliFormatter.YELLOW}{search_info.largest_frontier_size}{CliFormatter.END}')
@@ -96,8 +102,9 @@ def display_program_start():
 
 def exhibit_search_path(search_path):
     for node in search_path:
+        print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
         exhibit_puzzle_board(node.puzzle_board)
-        print('\n')
+        print('\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
         time.sleep(0.25)
 
 
